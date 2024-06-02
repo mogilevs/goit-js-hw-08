@@ -85,17 +85,20 @@ gallery.insertAdjacentHTML("beforeend", markup);
 gallery.addEventListener("click", enlargeImage);
 
 function enlargeImage(event) {
+
   if (event.target.nodeName === "IMG") {
-    const instance = basicLightbox.create(`
+    const link = event.target.parentElement;
+    console.log(link.href);
+    event.target.src = event.target.src;
+        const instance = basicLightbox.create(`
 	<img
-      src="${event.target.src}"
+      src="${link.href}"
       alt="${event.target.alt}"
     />
 `, { className: "modal", closable: true });
 
     instance.show();
-    const link = event.target.parentElement;
-    console.log(link.href);
+    
   }
 
 }
